@@ -1,0 +1,42 @@
+########################Initialization##########################################
+    units    metal
+#    dimension    3
+#    newton    on
+#    processors    1 1 1
+    boundary    p p p
+    atom_style    atomic
+#    atom_modify undefined
+##########################Atom definition#######################################
+    lattice    fcc 4.08
+    region    box block 0 10 0 5 0 4 units lattice
+    create_box     1 box
+    create_atoms    1 box
+#    read_data undefined
+#    read_dump undefined
+#    read_restart undefined
+#    replicate undefined
+    pair_style    eam
+    pair_coeff    * * Au_u3.eam
+#    pair_modify undefined
+############################Setting#############################################
+    group    Au type 1
+    mass    1 196.97
+    write_dump    Au cfg initial.cfg mass type xs ys zs modify element Au
+    write_dump    Au xyz initial.xyz modify element Au
+    write_dump    Au image initial.jpg type type
+    neighbor    2.0 bin
+    neigh_modify    check yes
+    timestep    0.001
+#    min_style undefined
+#    velocity undefined
+#    fix undefined
+#    compute undefined
+#############################Run a simulation###################################
+#    dump    1 Au cfg 1 dump.*.cfg mass type xs ys zs
+#    dump_modify    1 element Au
+#    thermo undefined
+#    thermo_modify undefined
+#    thermo_style undefined
+#    minimize undefined
+#    temper undefined
+#    run undefined
